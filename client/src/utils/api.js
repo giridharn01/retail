@@ -1,6 +1,6 @@
 import { getToken } from './tokenHandler';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NODE_ENV === 'production' ? '/api' : (process.env.REACT_APP_API_URL || 'http://localhost:5000/api');
 
 export const apiRequest = async (endpoint, method = 'GET', data = null) => {
   const token = localStorage.getItem('token');
@@ -47,4 +47,4 @@ export const apiRequest = async (endpoint, method = 'GET', data = null) => {
     // Re-throw the error with better context
     throw new Error(`API Error: ${error.message}`);
   }
-}; 
+};

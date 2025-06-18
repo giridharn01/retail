@@ -22,6 +22,7 @@ const corsOptions = {
     const allowedOrigins = [
       'http://localhost:3000',  // React dev server
       'http://localhost:3001',  // Alternative dev port
+      'https://ngd-retail1.vercel.app', // Vercel frontend
       process.env.FRONTEND_URL, // Production frontend URL
       process.env.CORS_ORIGIN   // Additional allowed origin
     ].filter(Boolean); // Remove undefined values
@@ -88,4 +89,4 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-}); 
+});
