@@ -9,8 +9,13 @@
       }
     },
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "src": "server/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "env": {
+          "MONGODB_URI": "@mongodb_uri"
+        }
+      }
     }
   ],
   "routes": [
@@ -24,7 +29,6 @@
     { "src": "/(.*)", "dest": "/client/build/index.html" }
   ],
   "env": {
-    "MONGODB_URI": "@mongodb_uri",
     "JWT_SECRET": "@jwt_secret"
   }
-} 
+}
