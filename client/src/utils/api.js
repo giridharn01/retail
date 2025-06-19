@@ -1,9 +1,8 @@
 import { getToken } from './tokenHandler';
 
-// Use environment variable for backend URL in production
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? (process.env.REACT_APP_API_URL || 'https://retail-git-main-giridhars-projects-03773486.vercel.app/api')
-  : (process.env.REACT_APP_API_URL || 'http://localhost:5000/api');
+// In production, this will be the URL of your separately deployed backend.
+// In development, it falls back to localhost.
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 export const apiRequest = async (endpoint, method = 'GET', data = null) => {
   const token = localStorage.getItem('token');
