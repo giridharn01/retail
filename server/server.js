@@ -8,24 +8,10 @@ const app = express();
 // Connect to database
 connectDB();
 
-// CORS Configuration
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-];
-
-if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
-  allowedOrigins.push(process.env.FRONTEND_URL);
-}
-
+// CORS Configuration - Allow all origins for separate deployment
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true, // Allow all origins
+  credentials: true
 };
 
 // Middleware
@@ -56,3 +42,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+module.exports = app;

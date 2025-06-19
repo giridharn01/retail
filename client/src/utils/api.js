@@ -1,6 +1,9 @@
 import { getToken } from './tokenHandler';
 
-const API_URL = process.env.NODE_ENV === 'production' ? '/api' : (process.env.REACT_APP_API_URL || 'http://localhost:5000/api');
+// Use environment variable for backend URL in production
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? (process.env.REACT_APP_API_URL || 'https://your-backend-url.com/api')
+  : (process.env.REACT_APP_API_URL || 'http://localhost:5000/api');
 
 export const apiRequest = async (endpoint, method = 'GET', data = null) => {
   const token = localStorage.getItem('token');
