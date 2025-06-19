@@ -13,38 +13,10 @@ connectDB();
 
 const app = express();
 
-// CORS Configuration
-const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-
-    const allowedOrigins = [
-      'http://localhost:3000',  // React dev server
-      'http://localhost:3001',  // Alternative dev port
-      process.env.FRONTEND_URL, // Production frontend URL
-      process.env.CORS_ORIGIN   // Additional allowed origin
-    ].filter(Boolean); // Remove undefined values
-
-    // Allow all Vercel preview URLs
-    if (origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Allow cookies/credentials
-  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+app.use(cors()); // Enable CORS for all origins
 app.use(helmet());
 
 // Rate limiting - Disabled in development
