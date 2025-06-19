@@ -2,7 +2,7 @@ import { getToken } from './tokenHandler';
 
 // Use environment variable for backend URL in production
 const API_URL = process.env.NODE_ENV === 'production' 
-  ? '/api'
+  ? (process.env.REACT_APP_API_URL || 'https://retail-git-main-giridhars-projects-03773486.vercel.app/api')
   : (process.env.REACT_APP_API_URL || 'http://localhost:5000/api');
 
 export const apiRequest = async (endpoint, method = 'GET', data = null) => {
