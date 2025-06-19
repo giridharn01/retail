@@ -16,11 +16,15 @@
 1. Go to [Render.com](https://render.com)
 2. Create a new Web Service
 3. Connect your GitHub repository
-4. Set root directory to `server`
-5. Set build command: `npm install`
-6. Set start command: `npm start`
-7. Set environment variables as above
-8. Deploy and get your backend URL
+4. The `render.yaml` file will automatically configure:
+   - Root directory: `server`
+   - Build command: `npm install`
+   - Start command: `npm start`
+   - Environment variables (you'll need to set `MONGODB_URI` and `JWT_SECRET` in the dashboard)
+5. Set environment variables in Render dashboard:
+   - `MONGODB_URI`: Your MongoDB connection string
+   - `JWT_SECRET`: Your JWT secret key
+6. Deploy and get your backend URL
 
 ### Option 3: Vercel (Backend only)
 1. Go to [Vercel.com](https://vercel.com)
