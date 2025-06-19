@@ -5,13 +5,16 @@ const {
     getServiceRequest,
     createServiceRequest,
     updateServiceRequest,
-    cancelServiceRequest
+    cancelServiceRequest,
+    getUserServiceRequests
 } = require('../controllers/services');
 const { protect, authorize } = require('../middleware/auth');
 
 router.route('/')
-    .get(protect, getServiceRequests)
+    .get(authorize('admin'), getServiceRequests)
     .post(protect, createServiceRequest);
+
+router.route('/user').get(protect, getUserServiceRequests);
 
 router.route('/:id')
     .get(protect, getServiceRequest)
@@ -19,4 +22,4 @@ router.route('/:id')
 
 router.put('/:id/cancel', protect, cancelServiceRequest);
 
-module.exports = router; 
+module.exports = router;
